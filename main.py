@@ -6,27 +6,25 @@ import pytz
 
 app = Flask(__name__)
 
-load_dotenv()
+load_dotenv(override=True)
 app.secret_key = os.getenv("SECRET_KEY")
 
 IST = pytz.timezone("Asia/Kolkata")
-# Valentine's Day (February 14, 12:00 AM IST)
 VALENTINES_DAY = IST.localize(datetime(2025, 2, 14, 0, 0, 0))
-
-USERNAME = os.getenv("USERNAME")
+VALENTINES_DAY_UNIX_TIMESTAMP = int(VALENTINES_DAY.timestamp())
+ 
 PASSWORD = os.getenv("PASSWORD")
 
 @app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        username = request.form["username"]
         password = request.form["password"]
 
-        if username == USERNAME and password == PASSWORD:
+        if password.upper() == PASSWORD:
             session["logged_in"] = True
             return redirect(url_for("home"))
         else:
-            return render_template("login.html", error="Invalid credentials")
+            return render_template("login.html", error="Invalid password.")
     
     return render_template("login.html")
 
@@ -42,17 +40,23 @@ def home():
 
     time_left = get_seconds_left()
     if time_left > 0:
-        return render_template("countdown.html", time_left=time_left)
+        return render_template("countdown.html", valentines_day=VALENTINES_DAY_UNIX_TIMESTAMP)
     else:
         return render_template("home.html")
     
-@app.route("/get_time_left")
-def get_time_left():
-    return jsonify({"time_left": get_seconds_left()})
+    return render_template("home.html")
+    
+# @app.route("/get_time_left")
+# def get_time_left():
+#     return jsonify({"time_left": get_seconds_left()})
+
+@app.route("/viewhome")
+def viewhome():
+    return render_template("home.html")
 
 @app.route("/logout")
 def logout():
-    session["logged_in"] = False
+    session.pop("logged_in")
     return redirect(url_for("login"))
 
 if __name__ == "__main__":

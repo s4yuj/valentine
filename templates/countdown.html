@@ -3,13 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown</title>
+    <title>countdown</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src = "{{ url_for('static', filename='js/countdown.js') }}"></script>
 </head>
 <body>
-    <h1>Countdown for our special day!</h1>
-    <div id="countdown"></div>
     <script>
-        const timeLeft = 5000;
+        const valentinesDay = "{{ valentines_day }}";
     </script>
-    <script src = "{{ url_for('static', filename='js/countdown.js') }}"></script>
+    <div class="container">
+        <h1>Countdown to Valentine's Day 🎀</h1>
+        <div class="countdown">
+            <ul>
+                <li>
+                    <span id="days"></span>
+                    <span class='label'>Days</span>
+                </li>
+                <li>
+                    <span id="hours"></span>
+                    <span class='label'>Hours</span>
+                </li>
+                <li>
+                    <span id="minutes"></span>
+                    <span class='label'>Minutes</span>
+                </li>
+                <li>
+                    <span id="seconds"></span>
+                    <span class='label'>Seconds</span>
+                </li>
+              </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

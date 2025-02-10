@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>valentine</title>
+    <title>Be my Valentine</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script defer src="{{ url_for('static', filename='js/home.js') }}"></script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Valentine</h1>
-    </header>
-    <main>
-        <p>YOU MADE IT!!!</p>
-    </main>
-</body>
+    <body>
+        <div class="container">
+            <h1>Happy Valentine's Day, Love 💖</h1>
+            <p class="message">
+                lorem ipsum this is a placeholder text.</p>
+            <div class="spotify-code">
+            </div>
+            <div class="gallery">
+                <img src="{{ url_for('static', filename='images/img1.jpg') }}">
+                <img src="{{ url_for('static', filename='images/img2.jpg') }}">
+                <img src="{{ url_for('static', filename='images/img3.jpg') }}">
+            </div>
+        </div>
+        <div class="hearts-container"></div>
+    </body>
 </html>
