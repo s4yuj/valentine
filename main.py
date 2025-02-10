@@ -15,18 +15,22 @@ VALENTINES_DAY_UNIX_TIMESTAMP = int(VALENTINES_DAY.timestamp())
  
 PASSWORD = os.getenv("PASSWORD")
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def login():
-    if request.method == "POST":
-        password = request.form["password"]
+    return redirect(url_for("home"))
 
-        if password.upper() == PASSWORD:
-            session["logged_in"] = True
-            return redirect(url_for("home"))
-        else:
-            return render_template("login.html", error="Invalid password.")
+# def login():
+#     if request.method == "POST":
+#         password = request.form["password"]
+
+#         if password.upper() == PASSWORD:
+#             session["logged_in"] = True
+#             return redirect(url_for("home"))
+#         else:
+#             return render_template("login.html", error="Invalid password.")
     
-    return render_template("login.html")
+#     return render_template("login.html")
+
 
 def get_seconds_left():
     now = datetime.now(IST)
@@ -35,8 +39,8 @@ def get_seconds_left():
 
 @app.route("/home")
 def home():
-    if not session.get("logged_in"):
-        return redirect(url_for("login"))
+    # if not session.get("logged_in"):
+    #     return redirect(url_for("login"))
 
     time_left = get_seconds_left()
     if time_left > 0:
