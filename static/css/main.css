@@ -60,7 +60,8 @@ body {
     border-radius: 12px;
     z-index: 1;
     width: clamp(300px, 60%, 700px);
-    height: clamp(200px, 35%, 400px);
+    height: auto;
+    /* height: clamp(200px, 35%, 400px); */
 }
 
 .container h1 {
@@ -96,7 +97,8 @@ body {
 @media (max-width: 600px) {
     .container {
         margin-top: 200px;
-        height: clamp(200px, 100%, 1000px);
+        margin-bottom: 200px;
+        /* height: clamp(200px, 100%, 1000px); */
     }
 
     .container h1 {
@@ -106,28 +108,51 @@ body {
 }
 
 /* home page */
+.container h1 {
+    font-size: 2rem;
+    margin-top: 20px;
+}
 
 .message {
-    font-size: 18px;
-    margin: 10px 0;
-    width: 90%;
+    font-size: 1.1rem;
+    max-width: 75%;
+    line-height: 1.4;
+}
+
+.spotify-code {
+    width: 85%;
 }
 
 .gallery {
+    width: 85%;
     display: flex;
     gap: 10px;
-    justify-content: center;
-    margin-top: 15px;
+    justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
+
 .gallery img {
-    width: 100%;
-    max-width: 90%;
-    height: auto;
+    width: 30%;
     border-radius: 8px;
-    object-fit: cover;
 }
+
+@media (max-width: 600px) {
+    .container h1 {
+        font-size: 1.5rem;
+    }
+    .message {
+        font-size: 1rem;
+        max-width: 90%;
+    }
+    .gallery img {
+        width: 48%;
+        align-content: stretch;
+    }
+}
+
 
 .hearts-container {
     position: absolute;
